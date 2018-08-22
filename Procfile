@@ -1,0 +1,1 @@
+web: MONGO_DEV=mongodb+srv://analytics:fedesoft@cluster0-f3tio.mongodb.net/test?retryWrites=true node ./bin/www
