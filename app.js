@@ -37,6 +37,13 @@ app.all('*',(req,res,next)=>{
     }
 });*/
 app.use(cors());
+app.all('*', function(req, res, next) {
+    if (req.headers['x-forwarded-proto'] != 'https' && req.app.get('env') != 'development') {
+        res.redirect(307, 'https://' + req.hostname + req.url);
+    } else {
+        next();
+    }
+});
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
